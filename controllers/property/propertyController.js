@@ -1,6 +1,5 @@
 const Property = require("../../models/Property");
 
-// 🔹 Criar uma nova propriedade
 exports.createProperty = async (req, res) => {
   try {
     const data = { ...req.body };
@@ -28,7 +27,6 @@ exports.createProperty = async (req, res) => {
   }
 };
 
-// 🔹 Listar todas as propriedades
 exports.getAllProperties = async (req, res) => {
   try {
     const properties = await Property.findAll();
@@ -39,7 +37,6 @@ exports.getAllProperties = async (req, res) => {
   }
 };
 
-// 🔹 Buscar propriedade por ID
 exports.getPropertyById = async (req, res) => {
   try {
     const { id } = req.params;
@@ -56,7 +53,6 @@ exports.getPropertyById = async (req, res) => {
   }
 };
 
-// 🔹 Atualizar propriedade por ID
 exports.updateProperty = async (req, res) => {
   try {
     const { id } = req.params;
@@ -83,7 +79,6 @@ exports.updateProperty = async (req, res) => {
   }
 };
 
-// 🔹 Deletar propriedade por ID
 exports.deleteProperty = async (req, res) => {
   try {
     const { id } = req.params;

@@ -7,10 +7,10 @@ const propertyController = require("../controllers/property/propertyController")
 //router.use(authMiddleware); // Todas as rotas abaixo precisam de login
 //router.use(isAdmin);        // E todas precisam de ADMIN
 
-router.post("/add", propertyController.createProperty);
-router.get("/all", propertyController.getAllProperties);
+router.post("/", propertyController.createProperty);
+router.get("/", propertyController.getAllProperties);
 router.get("/:id", propertyController.getPropertyById);
-router.put("/update/:id", propertyController.updateProperty);
-router.delete("/delete/:id", propertyController.deleteProperty);
+router.put("/:id", propertyController.updateProperty);
+router.delete("/:id", propertyController.deleteProperty);
 
 module.exports = router;

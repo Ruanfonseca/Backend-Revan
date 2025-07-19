@@ -13,10 +13,8 @@ app.use(corsMiddleware);
 app.use(express.json());
 
 app.use("/auth", authRoutes);
-app.use("/user", userRoutes);
-app.use("/property", propertyRoutes);
-
-// Conecta ao banco e inicia servidor
+app.use("/api/users", userRoutes);
+app.use("/api/properties", propertyRoutes);
 
 sequelize.sync({ alter: true }).then(() => {
   app.listen(process.env.PORT, () => {
