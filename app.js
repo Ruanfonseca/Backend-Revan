@@ -6,6 +6,7 @@ const sequelize = require("./config/database");
 const authRoutes = require("./routes/authRoutes");
 const userRoutes = require("./routes/userRoutes");
 const propertyRoutes = require("./routes/propertyRoutes");
+const mailRoutes = require("./routes/mailRoutes");
 const corsMiddleware = require("./middlewares/corsMiddleware");
 
 app.use(corsMiddleware);
@@ -15,6 +16,7 @@ app.use(express.json());
 app.use("/auth", authRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/properties", propertyRoutes);
+app.use("/api/send-mail", mailRoutes);
 
 sequelize.sync({ alter: true }).then(() => {
   app.listen(process.env.PORT, () => {
