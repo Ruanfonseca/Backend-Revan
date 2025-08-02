@@ -1,7 +1,7 @@
 const allowedOrigins = [
   "http://localhost:8080",
   "https://preview--revan-imobiliaria-web.lovable.app",
-  // Adicione outras URLs permitidas aqui
+  "https://revan-imobiliaria-web.vercel.app/",
 ];
 
 const corsMiddleware = (req, res, next) => {

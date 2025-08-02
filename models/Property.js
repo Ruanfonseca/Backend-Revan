@@ -15,20 +15,71 @@ const Property = sequelize.define(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    description: {
-      type: DataTypes.TEXT,
-    },
+
     price: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+
+    priceValue: {
       type: DataTypes.DECIMAL(12, 2),
       allowNull: false,
     },
+
+    location: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+
+    bedrooms: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+    },
+
+    bathrooms: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+    },
+
+    area: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+
+    areaValue: {
+      type: DataTypes.DECIMAL(10, 2),
+      allowNull: true,
+    },
+
     type: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+
+    image: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+
+    badge: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+
+    isNew: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: false,
+    },
+
+    operation: {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        isIn: [["casa", "apartamento", "terreno", "comercial"]],
+        isIn: [["comprar", "alugar"]],
       },
     },
+
     status: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -36,38 +87,6 @@ const Property = sequelize.define(
       validate: {
         isIn: [["disponivel", "vendido", "alugado", "reservado"]],
       },
-    },
-    address: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    neighborhood: {
-      type: DataTypes.STRING,
-    },
-    city: {
-      type: DataTypes.STRING,
-    },
-    zipCode: {
-      type: DataTypes.STRING,
-    },
-    bedrooms: {
-      type: DataTypes.INTEGER,
-      defaultValue: 0,
-    },
-    bathrooms: {
-      type: DataTypes.INTEGER,
-      defaultValue: 0,
-    },
-    area: {
-      type: DataTypes.FLOAT,
-    },
-    garage: {
-      type: DataTypes.INTEGER,
-      defaultValue: 0,
-    },
-    images: {
-      type: DataTypes.TEXT,
-      allowNull: true,
     },
   },
   {

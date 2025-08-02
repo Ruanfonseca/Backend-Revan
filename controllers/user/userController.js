@@ -130,3 +130,32 @@ exports.deleteUser = async (req, res) => {
     res.status(500).json({ error: "Erro ao deletar usuário" });
   }
 };
+exports.getUserLogged = async (req, res) => {
+  try {
+    const userId = req.user.email;
+
+    const user = await UserRevan.findByPk(userId, {
+      attributes: [
+        "id",
+        "name",
+        "email",
+        "phone",
+        "role",
+        "status",
+        "createdAt",
+      ],
+    });
+
+    if (!user) {
+      return res.status(404).json({ error: "Usuário não encontrado." });
+    }
+
+    res.json(user);
+  } catch (error) {
+    console.error("Erro ao buscar usuário logado:", error);
+    res.status(500).json({
+      error: "Erro ao buscar usuário logado",
+      details: error.message,
+    });
+  }
+};
