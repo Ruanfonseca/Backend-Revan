@@ -15,7 +15,6 @@ const UserRevan = sequelize.define(
     },
     email: {
       type: DataTypes.STRING,
-      unique: true,
       allowNull: false,
       validate: { isEmail: true },
     },

@@ -3,17 +3,11 @@ const Property = require("../../models/Property");
 exports.createProperty = async (req, res) => {
   try {
     const data = { ...req.body };
-
-    // Gere um ID inteiro aleatório entre 1 milhão e 10 milhões (ou outro intervalo que evite colisões)
     data.id = Math.floor(Math.random() * 9_000_000) + 1_000_000;
     delete data.createdAt;
     delete data.updatedAt;
 
-    console.log("Dados para criação:", data);
-
     const property = await Property.create(data);
-
-    console.log("property", property);
 
     res.status(201).json({
       message: "Propriedade criada com sucesso",
