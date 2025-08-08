@@ -50,9 +50,15 @@ exports.getPropertyById = async (req, res) => {
 exports.updateProperty = async (req, res) => {
   try {
     const { id } = req.params;
-    const [updated] = await Property.update(req.body, {
-      where: { id },
-    });
+
+    // Busca a propriedade antes da atualização
+    const propertyBefore = await Property.findByPk(id);
+    if (!propertyBefore) {
+      return res.status(404).json({ error: "Propriedade não encontrada" });
+    }
+
+    // Atualiza a propriedade
+    const [updated] = await Property.update(req.body, { where: { id } });
 
     if (updated === 0) {
       return res
@@ -60,7 +66,20 @@ exports.updateProperty = async (req, res) => {
         .json({ error: "Propriedade não encontrada para atualização" });
     }
 
+    // Busca a propriedade atualizada
     const updatedProperty = await Property.findByPk(id);
+
+    // Verifica se o status mudou para 'vendido'
+    if (
+      propertyBefore.status !== "vendido" &&
+      updatedProperty.status === "vendido"
+    ) {
+      // Cria registro na tabela Seller com o valor do imóvel
+      await Seller.create({
+        value: updatedProperty.priceValue,
+      });
+    }
+
     res.status(200).json({
       message: "Propriedade atualizada com sucesso",
       property: updatedProperty,
