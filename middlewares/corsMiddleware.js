@@ -1,33 +1,27 @@
+// middlewares/corsMiddleware.js
+const cors = require("cors");
+
 const allowedOrigins = [
   "http://localhost:8080",
-
   "https://preview--revan-imobiliaria-web.lovable.app",
-
   "https://revan-imobiliaria-web.vercel.app",
-
-  "http://72.60.14.233:3000",
+  "https://apirevan.com",
 ];
 
-const corsMiddleware = (req, res, next) => {
-  const origin = req.headers.origin;
-
-  if (allowedOrigins.includes(origin)) {
-    res.setHeader("Access-Control-Allow-Origin", origin);
-  }
-
-  res.setHeader(
-    "Access-Control-Allow-Methods",
-    "GET, POST, PUT, DELETE, OPTIONS"
-  );
-  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
-  res.setHeader("Access-Control-Allow-Credentials", "true");
-
-  // Responde OPTIONS diretamente
-  if (req.method === "OPTIONS") {
-    return res.sendStatus(204);
-  }
-
-  next();
+const corsOptions = {
+  origin: function (origin, callback) {
+    // Permite requisições sem origin (Postman, cURL)
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+  credentials: true,
+  optionsSuccessStatus: 204, // responde OPTIONS com 204
 };
 
-module.exports = corsMiddleware;
+module.exports = cors(corsOptions);
