@@ -9,10 +9,10 @@ const propertyRoutes = require("./routes/propertyRoutes");
 const mailRoutes = require("./routes/mailRoutes");
 const reportsRoutes = require("./routes/reportsRoutes");
 
-const corsMiddleware = require("./middlewares/corsMiddleware");
+//const corsMiddleware = require("./middlewares/corsMiddleware");
 
 // Usa CORS antes de qualquer rota
-app.use(corsMiddleware);
+//app.use(corsMiddleware);
 
 // Parse JSON
 app.use(express.json());
