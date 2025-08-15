@@ -21,6 +21,7 @@ app.use(express.json());
 app.use("/auth", authRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/properties", propertyRoutes);
+
 app.use("/api/send-mail", mailRoutes);
 app.use("/api/reports", reportsRoutes);
 
