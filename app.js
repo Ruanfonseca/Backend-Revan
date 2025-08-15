@@ -13,8 +13,6 @@ const corsMiddleware = require("./middlewares/corsMiddleware");
 
 // Usa CORS antes de qualquer rota
 app.use(corsMiddleware);
-app.options("*", corsMiddleware);
-
 // Parse JSON
 app.use(express.json());
 
