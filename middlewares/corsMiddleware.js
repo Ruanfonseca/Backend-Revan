@@ -2,7 +2,7 @@
 const cors = require("cors");
 
 const allowedOrigins = [
-  "http://localhost:8080",
+  "http://localhost:8081",
   "https://preview--revan-imobiliaria-web.lovable.app",
   "https://revan-imobiliaria-web.vercel.app",
   "https://apirevan.com",

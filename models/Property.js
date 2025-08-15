@@ -65,6 +65,10 @@ const Property = sequelize.define(
       type: DataTypes.STRING,
       allowNull: true,
     },
+    description: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
 
     isNew: {
       type: DataTypes.BOOLEAN,
