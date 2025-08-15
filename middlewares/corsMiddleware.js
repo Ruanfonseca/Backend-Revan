@@ -4,6 +4,8 @@ const allowedOrigins = [
   "https://preview--revan-imobiliaria-web.lovable.app",
 
   "https://revan-imobiliaria-web.vercel.app",
+
+  "http://72.60.14.233:3000",
 ];
 
 const corsMiddleware = (req, res, next) => {
