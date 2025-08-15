@@ -32,12 +32,27 @@ jobs:
           username: root
           password: ${{ secrets.VPS_PASSWORD }}
           script: |
+            # Instalar Docker se não existir
+            if ! command -v docker &> /dev/null; then
+              apt update
+              apt install -y docker.io
+            fi
+
+            # Instalar Docker Compose plugin se não existir
+            if ! docker compose version &> /dev/null; then
+              mkdir -p /usr/local/lib/docker/cli-plugins
+              curl -SL https://github.com/docker/compose/releases/latest/download/docker-compose-linux-x86_64 \
+                -o /usr/local/lib/docker/cli-plugins/docker-compose
+              chmod +x /usr/local/lib/docker/cli-plugins/docker-compose
+            fi
+
+            # Criar pasta do projeto
             mkdir -p /app/backend-revan
             cd /app/backend-revan
 
-            # Baixar docker-compose.yml do Google Drive
-            curl -L "https://drive.google.com/file/d/1pPy1Gv0afyK-UKB2n3ag9-YeKyKtzVHt/view?usp=sharing" -o docker-compose.yml
+            # Baixar docker-compose.yml do Google Drive (link direto)
+            curl -L "https://drive.google.com/uc?export=download&id=1pPy1Gv0afyK-UKB2n3ag9-YeKyKtzVHt" -o docker-compose.yml
 
-            # Atualizar containers com nova imagem
-            docker-compose pull
-            docker-compose up -d
+            # Subir containers com nova imagem
+            docker compose pull
+            docker compose up -d
