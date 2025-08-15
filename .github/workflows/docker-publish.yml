@@ -1,12 +1,12 @@
-name: Build and Push Docker image
+name: Build, Push and Deploy
 
 on:
   push:
     branches:
-      - main # ou outra branch desejada
+      - main
 
 jobs:
-  build-and-push:
+  build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
@@ -20,9 +20,24 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Build da imagem
-        run: |
-          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/backend-revan:latest .
+        run: docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/backend-revan:latest .
 
       - name: Push da imagem para o Docker Hub
-        run: |
-          docker push ${{ secrets.DOCKERHUB_USERNAME }}/backend-revan:latest
+        run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/backend-revan:latest
+
+      - name: Deploy na VPS via SSH
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: 72.60.14.233
+          username: root
+          password: ${{ secrets.VPS_PASSWORD }}
+          script: |
+            mkdir -p /app/backend-revan
+            cd /app/backend-revan
+
+            # Baixar docker-compose.yml do Google Drive
+            curl -L "https://drive.google.com/file/d/1pPy1Gv0afyK-UKB2n3ag9-YeKyKtzVHt/view?usp=sharing" -o docker-compose.yml
+
+            # Atualizar containers com nova imagem
+            docker-compose pull
+            docker-compose up -d
