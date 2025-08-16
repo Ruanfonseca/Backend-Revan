@@ -8,11 +8,12 @@ const userRoutes = require("./routes/userRoutes");
 const propertyRoutes = require("./routes/propertyRoutes");
 const mailRoutes = require("./routes/mailRoutes");
 const reportsRoutes = require("./routes/reportsRoutes");
-
+const salesRoutes = require("./routes/salesRoutes");
 const corsMiddleware = require("./middlewares/corsMiddleware");
 
 // Usa CORS antes de qualquer rota
 app.use(corsMiddleware);
+
 // Parse JSON
 app.use(express.json());
 
@@ -20,7 +21,7 @@ app.use(express.json());
 app.use("/auth", authRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/properties", propertyRoutes);
-
+app.use("/api/sales", salesRoutes);
 app.use("/api/send-mail", mailRoutes);
 app.use("/api/reports", reportsRoutes);
 

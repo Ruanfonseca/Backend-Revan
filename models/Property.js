@@ -41,6 +41,11 @@ const Property = sequelize.define(
       allowNull: true,
     },
 
+    qtdstock: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+    },
+
     area: {
       type: DataTypes.STRING,
       allowNull: true,
@@ -60,11 +65,29 @@ const Property = sequelize.define(
       type: DataTypes.STRING,
       allowNull: true,
     },
+    mainImage: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+
+    secondImage: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    thirdImage: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    fourthImage: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
 
     badge: {
       type: DataTypes.STRING,
       allowNull: true,
     },
+
     description: {
       type: DataTypes.STRING,
       allowNull: true,
