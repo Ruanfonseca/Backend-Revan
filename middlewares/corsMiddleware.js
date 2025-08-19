@@ -5,6 +5,8 @@ const allowedOrigins = [
   "http://localhost:8080",
   "https://preview--revan-imobiliaria-web.lovable.app",
   "https://revan-imobiliaria-web.vercel.app",
+  "https://www.revanimoveis.com",
+  "revanimoveis.com",
 ];
 
 const corsOptions = {
