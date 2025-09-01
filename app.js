@@ -9,6 +9,7 @@ const propertyRoutes = require("./routes/propertyRoutes");
 const mailRoutes = require("./routes/mailRoutes");
 const reportsRoutes = require("./routes/reportsRoutes");
 const salesRoutes = require("./routes/salesRoutes");
+const blogRoutes = require("./routes/blogRoutes");
 const corsMiddleware = require("./middlewares/corsMiddleware");
 
 // Usa CORS antes de qualquer rota
@@ -24,6 +25,7 @@ app.use("/api/properties", propertyRoutes);
 app.use("/api/sales", salesRoutes);
 app.use("/api/send-mail", mailRoutes);
 app.use("/api/reports", reportsRoutes);
+app.use("/api/blog", blogRoutes);
 
 // Sincroniza banco e inicia servidor
 sequelize.sync({ alter: true }).then(() => {
